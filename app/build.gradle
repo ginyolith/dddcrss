@@ -20,6 +20,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions ""
+    productFlavors {
+        mock {
+            resValue "string", "app_name", "RSSReader:Mock"
+            applicationIdSuffix ".mock"
+        }
+
+        prod {}
+    }
 }
 
 dependencies {
@@ -31,4 +41,12 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxjava:2.2.5"
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+
+    // dummy Text Data Generator
+    mockImplementation 'com.github.javafaker:javafaker:0.17.2'
 }
