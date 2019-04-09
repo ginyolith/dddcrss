@@ -1,7 +1,8 @@
-package ginyolith.dddcrss
+package ginyolith.dddcrss.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import ginyolith.dddcrss.R
 
 class MainActivity : AppCompatActivity() {
 
