@@ -1,9 +1,12 @@
 package ginyolith.dddcrss.presentation
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.graphics.alpha
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -99,6 +102,13 @@ class ArticleListFragment : Fragment() {
 
             override fun onBindViewHolder(holder: BindingHolder, position: Int) {
                 itemList[position].let {
+                    holder.binding.parent.setOnClickListener {_ ->
+                        val tabsIntent = CustomTabsIntent.Builder()
+                            .setShowTitle(true)
+                            .enableUrlBarHiding().build()
+                        tabsIntent.launchUrl(requireActivity(), Uri.parse(it.url.toString()))
+                    }
+
                     // タイトルを設定
                     holder.binding.titleTextView.text = it.title
 
