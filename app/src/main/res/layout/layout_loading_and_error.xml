@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="onRetry" type="android.view.View.OnClickListener"/>
+        <variable name="uiState" type="ginyolith.dddcrss.presentation.common.UiState"/>
+        <import type="android.view.View"/>
+        <import type="ginyolith.dddcrss.presentation.common.UiState"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:visibility="@{uiState instanceof UiState.Display ? View.GONE : View.VISIBLE}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="false"
+            android:focusable="false"
+            android:longClickable="false">
+
+        <FrameLayout
+                android:visibility="@{uiState instanceof UiState.Loading ? View.VISIBLE : View.GONE}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:visibility="visible">
+
+            <ProgressBar
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+        </FrameLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:visibility="@{uiState instanceof UiState.Error ? View.VISIBLE : View.GONE}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:visibility="gone">
+
+            <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/msg_loading_error"
+                    app:layout_constraintBottom_toTopOf="@+id/retryButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_chainStyle="packed"/>
+
+            <Button
+                    android:id="@+id/retryButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/message_retry"
+                    android:visibility="gone"
+                    android:onClick="@{onRetry}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2"
+                    app:layout_constraintVertical_chainStyle="packed"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
