@@ -12,7 +12,8 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun provideArticleRepository(): ArticleRepository {
-        return ArticleRepositoryImpl(ArticleRemoteDataSource())
+    fun provideArticleRepository(remote : ArticleRemoteDataSource): ArticleRepository {
+        return ArticleRepositoryImpl(remote)
     }
+
 }

@@ -5,8 +5,10 @@ import com.rometools.rome.io.SyndFeedInput
 import com.rometools.rome.io.XmlReader
 import io.reactivex.Single
 import java.net.URL
+import javax.inject.Inject
 
-class ArticleFetchService {
+/** HTTP通信を実際に行い、RSSを取得する責務のクラス */
+class ArticleFetchService @Inject constructor() {
 
     fun fetch(url: URL): Single<SyndFeed> {
         return Single.create {
