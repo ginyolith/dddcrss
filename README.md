@@ -13,8 +13,8 @@
 - RecyclerViewを使うこと
 
 ### RSS例
-RSS : はてなブックマークのrssを使う。 
-総合 : http://b.hatena.ne.jp/hotentry.rss
-世の中 : http://b.hatena.ne.jp/hotentry/social.rss
-政治と経済 : http://b.hatena.ne.jp/hotentry/economics.rss
-暮らし : http://b.hatena.ne.jp/hotentry/life.rss
+- RSS : はてなブックマークのrssを使う。 
+- 総合 : http://b.hatena.ne.jp/hotentry.rss
+- 世の中 : http://b.hatena.ne.jp/hotentry/social.rss
+- 政治と経済 : http://b.hatena.ne.jp/hotentry/economics.rss
+- 暮らし : http://b.hatena.ne.jp/hotentry/life.rss
