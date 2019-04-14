@@ -9,10 +9,14 @@ class HatenaRssArticleFactory : ArticleFactory() {
     override fun create(entry: SyndEntry): Article {
         val url = entry.foreignMarkup.firstOrNull { it.name == "imageurl" }?.text
 
+
         return Article(
             title = entry.title,
             thumbnailUrl = url?.let { URL(it) },
-            url = URL(entry.uri))
+            url = URL(entry.uri),
+            description = entry.description.value,
+            pubDate = entry.publishedDate
+        )
     }
 
 }

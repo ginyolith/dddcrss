@@ -20,7 +20,9 @@ class FakeGetArticleListImpl : GetArticleList {
                     Article(
                         thumbnailUrl = URL("https://picsum.photos/500/?image=${Random.nextInt(100)}"),
                         title = faker.medical().medicineName(),
-                        url = URL("https://www.google.com/?hl=ja")
+                        url = URL("https://www.google.com/?hl=ja"),
+                        description = faker.lorem().fixedString(100),
+                        pubDate = faker.date().birthday()
                     )
                 }
                 .let { emitter.onSuccess(it) }

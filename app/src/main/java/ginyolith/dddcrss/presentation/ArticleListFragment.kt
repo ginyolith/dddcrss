@@ -12,7 +12,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import ginyolith.dddcrss.R
 import ginyolith.dddcrss.RssApplication
 import ginyolith.dddcrss.databinding.ArticleListFragmentBinding
@@ -108,16 +107,8 @@ class ArticleListFragment : Fragment() {
                         tabsIntent.launchUrl(requireActivity(), Uri.parse(it.url.toString()))
                     }
 
-                    // タイトルを設定
-                    holder.binding.titleTextView.text = it.title
-
-                    // 画像URLの読み込み
-                    it.thumbnailUrl?.let { url ->
-                        Glide
-                            .with(requireContext())
-                            .load(url.toString())
-                            .into(holder.binding.thumbnailImageView)
-                    }
+                    // 記事情報を設定
+                    holder.binding.article = it
 
                 }
             }

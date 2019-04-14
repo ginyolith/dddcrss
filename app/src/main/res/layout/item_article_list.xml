@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <variable name="article" type="ginyolith.dddcrss.domain.model.Article"/>
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -13,9 +14,9 @@
 
         <ImageView
                 android:id="@+id/thumbnailImageView"
+                android:src="@{article.thumbnailUrl}"
                 android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:background="@android:color/darker_gray"
+                android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -24,12 +25,41 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textSize="17sp"
+                android:textSize="15sp"
                 android:layout_marginStart="10dp"
+                android:text="@{article.title}"
                 tools:text="記事タイトル記事タイトル記事タイトル記事タイトル記事タイトル記事タイトル"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/thumbnailImageView"
                 app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+                android:id="@+id/descriptionTextView"
+                android:layout_width="0dp"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:text="@{article.description}"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textSize="12sp"
+                tools:text="日本を脱出しようとか盛り上がってるし、どうしようもない閉塞感があるって、普通のブロガーからいわゆる知識人までそう言う。 そういうのを目にしたり耳にすると、そうなんだなぁって落ち込んだりする。未来がないように思える。 でもさ、今の世の中って最高だよ。この時代に生きていてよかった。 テクノロジーってゆっ.."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/thumbnailImageView"
+                app:layout_constraintTop_toBottomOf="@id/titleTextView"
+                tools:ignore="SmallSp"/>
+
+        <TextView
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                tools:text="2019/04/01 23:40:23"
+                android:text="@{article.pubDate}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/thumbnailImageView"
+                app:layout_constraintTop_toBottomOf="@id/descriptionTextView"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
