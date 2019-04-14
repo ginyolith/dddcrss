@@ -7,9 +7,11 @@ import java.net.URL
 /** はてなのRSSをドメインモデルとして解釈するためのFactory */
 class HatenaRssArticleFactory : ArticleFactory() {
     override fun create(entry: SyndEntry): Article {
+        val url = entry.foreignMarkup.firstOrNull { it.name == "imageurl" }?.text
+
         return Article(
             title = entry.title,
-            thumbnailUrl = entry.foreignMarkup.first { it.name == "imageurl" }.text.let { URL(it) },
+            thumbnailUrl = url?.let { URL(it) },
             url = URL(entry.uri))
     }
 

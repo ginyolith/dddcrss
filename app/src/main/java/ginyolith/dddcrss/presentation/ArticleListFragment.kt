@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.core.graphics.alpha
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -113,8 +112,13 @@ class ArticleListFragment : Fragment() {
                     holder.binding.titleTextView.text = it.title
 
                     // 画像URLの読み込み
-                    Glide.with(holder.binding.thumbnailImageView)
-                        .load(it.thumbnailUrl.toString()).into(holder.binding.thumbnailImageView)
+                    it.thumbnailUrl?.let { url ->
+                        Glide
+                            .with(requireContext())
+                            .load(url.toString())
+                            .into(holder.binding.thumbnailImageView)
+                    }
+
                 }
             }
         }
