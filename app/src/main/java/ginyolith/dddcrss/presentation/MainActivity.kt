@@ -1,34 +1,44 @@
 package ginyolith.dddcrss.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.fragment.app.FragmentStatePagerAdapter
 import ginyolith.dddcrss.R
+import ginyolith.dddcrss.RssApplication
 import ginyolith.dddcrss.domain.model.ArticleCategory
+import ginyolith.dddcrss.domain.usecase.GetCategoryList
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewPagerAdapter = object: FragmentPagerAdapter(supportFragmentManager) {
-        override fun getItem(position: Int): Fragment {
-            // タブ位置に基づいて、記事カテゴリを取得
-            val category = ArticleCategory.values()[position]
+    @Inject
+    lateinit var getArticleCategory : GetCategoryList
 
-            return ArticleListFragment.newInstance(category)
-        }
+    private val viewPagerAdapter by lazy {
+        object: FragmentPagerAdapter(supportFragmentManager) {
 
-        override fun getCount(): Int = ArticleCategory.values().size
+            val itemList = getArticleCategory.execute()
 
-        override fun getPageTitle(position: Int): CharSequence? {
-            return ArticleCategory.values()[position].title
+            override fun getItem(position: Int): Fragment {
+                // タブ位置に基づいて、記事カテゴリを取得
+                return ArticleListFragment.newInstance(itemList[position])
+            }
+
+            override fun getCount(): Int = ArticleCategory.values().size
+
+            override fun getPageTitle(position: Int): CharSequence? {
+                return ArticleCategory.values()[position].title
+            }
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        (application as RssApplication).appComponent.inject(this)
 
         viewPager.let {
             it.adapter = viewPagerAdapter

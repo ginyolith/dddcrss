@@ -7,6 +7,7 @@ import dagger.android.AndroidInjector
 import ginyolith.dddcrss.RssApplication
 import ginyolith.dddcrss.data.DataModule
 import ginyolith.dddcrss.presentation.ArticleListFragment
+import ginyolith.dddcrss.presentation.MainActivity
 import javax.inject.Singleton
 
 @Singleton
@@ -17,6 +18,7 @@ import javax.inject.Singleton
 interface AppComponent : AndroidInjector<RssApplication> {
 
     fun inject(articleListFragment: ArticleListFragment)
+    fun inject(mainActivity: MainActivity)
 
     @Component.Builder
     interface Builder {
