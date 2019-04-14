@@ -44,15 +44,24 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
+    implementation 'androidx.appcompat:appcompat:1.1.0-alpha04'
     implementation 'androidx.core:core-ktx:1.1.0-alpha05'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0-beta01'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0-beta01'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0-alpha04'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+    androidTestImplementation 'androidx.test:runner:1.2.0-alpha03'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha03'
+
+    // Http通信用
+    def retrofit_version = '2.5.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+
+    // Retrofit用のRxJavaアダプター
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
 
     // RxJava
     implementation "io.reactivex.rxjava2:rxjava:2.2.5"
@@ -61,6 +70,8 @@ dependencies {
 
     // dummy Text Data Generator
     mockImplementation 'com.github.javafaker:javafaker:0.17.2'
+
+    implementation 'com.rometools:rome:1.12.0'
 
     // デザインサポート
     implementation 'com.google.android.material:material:1.0.0'
@@ -83,4 +94,7 @@ dependencies {
 
     // multidex support
     implementation 'com.android.support:multidex:1.0.3'
+
+
+    testImplementation 'org.assertj:assertj-core:3.9.1'
 }

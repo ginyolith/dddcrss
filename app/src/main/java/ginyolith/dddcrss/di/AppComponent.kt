@@ -5,12 +5,14 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
 import ginyolith.dddcrss.RssApplication
+import ginyolith.dddcrss.data.DataModule
 import ginyolith.dddcrss.presentation.ArticleListFragment
 import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [
-    FlavorModule::class
+    FlavorModule::class,
+    DataModule::class
 ])
 interface AppComponent : AndroidInjector<RssApplication> {
 
